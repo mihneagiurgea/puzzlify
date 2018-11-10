@@ -1,0 +1,16 @@
+{% block title %}Question ({{ question }}) for {{ puzzle }} {% endblock %}
+
+{% block content %}
+<h1>Question({{ question }}) for {{ puzzle }}</h1>
+
+<p>{{ hint }}</p>
+<p>Answer: {{ answer }}</p>
+
+<form method="post">
+    {% csrf_token %}
+    <label for="answer">Your name: </label>
+    <input id="answer" type="text" name="answer" value="">
+    <input type="submit" value="OK">
+</form>
+
+{% endblock %}
