@@ -19,9 +19,11 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('puzzle/<slug:puzzle>/',
+    path('puzzle/<slug:puzzle_id>/',
          views.start_puzzle, name='start_puzzle'),
-    path('puzzle/<slug:puzzle>/<slug:question>/',
+    path('puzzle/<slug:puzzle_id>/<slug:end_uuid>/',
+         views.end_puzzle, name='end_puzzle'),
+    path('q/<slug:puzzle_id>/<slug:question_id>/',
          views.question, name='question'),
     path('admin/', admin.site.urls),
 ]
