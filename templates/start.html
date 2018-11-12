@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block body %}
+<h1>{{ puzzle.name|title }}</h1>
+<div>{{ puzzle.start_message }}</div>
+
+
+<a href="{{ puzzle.first_question.get_absolute_url }}">Start</a>
+{% endblock body %}

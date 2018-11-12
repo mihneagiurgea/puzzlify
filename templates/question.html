@@ -1,16 +1,18 @@
-{% block title %}Question ({{ question }}) for {{ puzzle }} {% endblock %}
+{% extends "base.html" %}
 
-{% block content %}
-<h1>Question({{ question }}) for {{ puzzle }}</h1>
+{% block body %}
+<h1>{{ question.name|title }}</h1>
 
-<p>{{ hint }}</p>
-<p>Answer: {{ answer }}</p>
+<p>{{ question.question }}</p>
 
 <form method="post">
     {% csrf_token %}
-    <label for="answer">Your name: </label>
+    <label for="answer">Your answer: </label>
     <input id="answer" type="text" name="answer" value="">
     <input type="submit" value="OK">
 </form>
+{% if answer %}
+<i>Incorrect answer: {{ answer }}</i>
+{% endif %}
 
-{% endblock %}
+{% endblock body %}

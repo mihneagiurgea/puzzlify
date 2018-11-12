@@ -12,9 +12,10 @@ class Puzzle(models.Model):
 
     name = models.CharField(unique=True, blank=False, max_length=30,
                             help_text="A short name to display to users")
-    description = models.CharField(blank=False, max_length=500)
 
     # Defines the start of the puzzle
+    start_message = models.TextField(blank=False,
+                                     help_text="The message to display at the start of the puzzle.")
     first_question = models.ForeignKey(
         'Question', on_delete=models.SET_NULL, blank=True, null=True, related_name='+',
         help_text="What should be the first question to start this puzzle? If not set, the puzzle can't be played. " +

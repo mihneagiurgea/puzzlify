@@ -1,0 +1,13 @@
+P0:
+ * host on Google Cloud 
+ * learn Nae how to use it 
+ * make the views pretty
+ * add background image
+
+P1:
+ * ability to customize background image per puzzle
+ * can we include links?
+ 
+ P2:
+  * do we want end.html to have a different image?
+  * maybe generate shorter UUID links for the questions?
