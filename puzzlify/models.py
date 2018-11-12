@@ -2,6 +2,7 @@ import uuid
 
 from django.db import models
 from django.urls import reverse
+from django.utils.html import format_html
 
 
 class Puzzle(models.Model):
@@ -33,6 +34,15 @@ class Puzzle(models.Model):
 
     def get_absolute_url(self):
         return reverse('start_puzzle', args=[self.id])
+
+    ###
+    # Admin view
+    ###
+    def html_link(self):
+        url = self.get_absolute_url()
+        return format_html(
+            '<a href="{}" target="_blank">{}</a>', url, url)
+    html_link.short_description = 'View on site'
 
 
 class Question(models.Model):
@@ -66,3 +76,28 @@ class Question(models.Model):
 
     def get_absolute_url(self):
         return reverse('question', args=[self.puzzle.id, self.id])
+
+    ###
+    # Admin view
+    ###
+    def position_in_puzzle(self):
+        if not self.puzzle.first_question:
+            return "(puzzle has no first_question)"
+        index = 0
+        head = self.puzzle.first_question
+        while head:
+            index += 1
+            if head == self:
+                if self.next_question is None:
+                    return "#{} | last question".format(index)
+                else:
+                    return "#{}".format(index)
+            head = head.next_question
+        return "(not reachable from first_question)"
+    position_in_puzzle.short_description = 'Position in puzzle'
+
+    def html_link(self):
+        url = self.get_absolute_url()
+        return format_html(
+            '<a href="{}" target="_blank">{}</a>', url, url)
+    html_link.short_description = 'View on site'

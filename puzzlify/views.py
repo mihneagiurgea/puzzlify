@@ -8,7 +8,8 @@ from .models import Puzzle, Question
 def start_puzzle(request, puzzle_id):
     puzzle = Puzzle.objects.get(id=puzzle_id)
     if not puzzle.first_question:
-        raise Http404
+        raise ValueError(
+            "Puzzle {} does not have a first_question defined".format(puzzle))
 
     return render(request, 'start.html', context=dict(puzzle=puzzle))
 
