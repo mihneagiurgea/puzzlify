@@ -7,12 +7,29 @@
 
 <form method="post">
     {% csrf_token %}
-    <label for="answer">Your answer: </label>
-    <input id="answer" type="text" name="answer" value="">
-    <input type="submit" value="OK">
+    <div class="row">
+        <div class="six columns">
+            <label for="answer">Your answer: </label>
+            <input class="u-full-width" type="text" placeholder="You gots this..." id="answer" name="answer" value="">
+        </div>
+        <div class="six columns">
+            <label for="submit"> &nbsp; </label>
+            <input class="button-primary" type="submit" id="submit" value="OK">
+        </div>
+    </div>
+    {% if answer %}
+    <div class="row">
+        <div class="six columns">
+            <p>Incorrect answer: <i>{{ answer }}</i></p>
+        </div>
+
+    </div>
+
+    {% endif %}
 </form>
-{% if answer %}
-<i>Incorrect answer: {{ answer }}</i>
-{% endif %}
+
+<!-- Always wrap checkbox and radio inputs in a label and use a <span class="label-body"> inside of it -->
+
+<!-- Note: The class .u-full-width is just a utility class shorthand for width: 100% -->
 
 {% endblock body %}
